@@ -2,6 +2,9 @@
 
 This repository contains a Nextstrain build for phylogenetic analysis of Heartland virus L segment sequences. The pipeline processes viral genome sequences to create interactive phylogenetic visualizations showing the evolution and geographic distribution of Heartland virus.
 
+<img width="1207" height="615" alt="image" src="https://github.com/user-attachments/assets/4ec14475-ba27-4b6e-b9d8-6ef4a1bb63a6" />
+<img width="1199" height="566" alt="image" src="https://github.com/user-attachments/assets/1701735a-2ca3-4d9b-abe2-2ec00b88333d" />
+
 ## Overview
 
 Heartland virus is a phlebovirus (family Phenuiviridae) first discovered in Missouri in 2009. This build analyzes the L (large) segment sequences to understand the phylogenetic relationships and spatiotemporal patterns of the virus.
