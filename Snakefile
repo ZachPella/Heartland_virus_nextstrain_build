@@ -1,11 +1,11 @@
 rule all:
     input:
-        auspice_json = "auspice/zika.json",
+        auspice_json = "auspice/heartland.json",
 
 input_fasta = "data/sequences.fasta",
 input_metadata = "data/metadata.tsv",
-dropped_strains = "config/dropped_strains.txt",
-reference = "config/zika_outgroup.gb",
+reference = "config/reference.fasta",
+reference_genbank = "config/heartland_segments.gb",
 colors = "config/colors.tsv",
 lat_longs = "config/lat_longs.tsv",
 auspice_config = "config/auspice_config.json"
@@ -32,26 +32,23 @@ rule filter:
         Filtering to
           - {params.sequences_per_group} sequence(s) per {params.group_by!s}
           - from {params.min_date} onwards
-          - excluding strains in {input.exclude}
         """
     input:
         sequences = input_fasta,
         sequence_index = "results/sequence_index.tsv",
-        metadata = input_metadata,
-        exclude = dropped_strains
+        metadata = input_metadata
     output:
         sequences = "results/filtered.fasta"
     params:
-        group_by = "country year month",
+        group_by = "state year",
         sequences_per_group = 20,
-        min_date = 2012
+        min_date = 2009
     shell:
         """
         augur filter \
             --sequences {input.sequences} \
             --sequence-index {input.sequence_index} \
             --metadata {input.metadata} \
-            --exclude {input.exclude} \
             --output {output.sequences} \
             --group-by {params.group_by} \
             --sequences-per-group {params.sequences_per_group} \
@@ -84,11 +81,10 @@ rule tree:
         alignment = rules.align.output.alignment
     output:
         tree = "results/tree_raw.nwk"
+    threads: 14
     shell:
         """
-        augur tree \
-            --alignment {input.alignment} \
-            --output {output.tree}
+        augur tree --alignment {input.alignment} --output {output.tree} --nthreads {threads}
         """
 
 rule refine:
@@ -110,7 +106,8 @@ rule refine:
     params:
         coalescent = "opt",
         date_inference = "marginal",
-        clock_filter_iqd = 4
+        clock_filter_iqd = 4,
+	root = "JX005847.1"
     shell:
         """
         augur refine \
@@ -123,7 +120,8 @@ rule refine:
             --coalescent {params.coalescent} \
             --date-confidence \
             --date-inference {params.date_inference} \
-            --clock-filter-iqd {params.clock_filter_iqd}
+            --clock-filter-iqd {params.clock_filter_iqd} \
+            --root {params.root}
         """
 
 rule ancestral:
@@ -149,16 +147,12 @@ rule translate:
     input:
         tree = rules.refine.output.tree,
         node_data = rules.ancestral.output.node_data,
-        reference = reference
+        reference = reference_genbank,
     output:
         node_data = "results/aa_muts.json"
     shell:
         """
-        augur translate \
-            --tree {input.tree} \
-            --ancestral-sequences {input.node_data} \
-            --reference-sequence {input.reference} \
-            --output-node-data {output.node_data} \
+        augur translate --tree {input.tree} --ancestral-sequences {input.node_data} --reference-sequence {input.reference} --output-node-data {output.node_data}
         """
 
 rule traits:
@@ -169,7 +163,7 @@ rule traits:
     output:
         node_data = "results/traits.json",
     params:
-        columns = "region country"
+        columns = "state country"
     shell:
         """
         augur traits \

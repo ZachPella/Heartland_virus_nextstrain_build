@@ -1,9 +1,9 @@
 {
-  "title": "Tutorial Nextstrain build for Zika virus",
+  "title": "Heartland virus L segment phylogenetic analysis",
   "maintainers": [
-    {"name": "Trevor Bedford", "url": "http://bedford.io/team/trevor-bedford/"}
+    {"name": "ZP", "url": "none"}
   ],
-  "build_url": "https://github.com/nextstrain/zika-tutorial",
+  "build_url": "https://github.com/ZP/heartland-nextstrain",
   "colorings": [
     {
       "key": "gt",
@@ -16,24 +16,19 @@
       "type": "continuous"
     },
     {
-      "key": "author",
-      "title": "Author",
-      "type": "categorical"
-    },
-    {
       "key": "country",
       "title": "Country",
       "type": "categorical"
     },
     {
-      "key": "region",
-      "title": "Region",
+      "key": "state",
+      "title": "State",
       "type": "categorical"
     }
   ],
   "geo_resolutions": [
     "country",
-    "region"
+    "state"
   ],
   "panels": [
      "tree",
@@ -41,11 +36,11 @@
      "entropy"
   ],
   "display_defaults": {
-    "map_triplicate": true
+    "map_triplicate": true,
+    "color_by": "state"
   },
   "filters": [
     "country",
-    "region",
-    "author"
+    "state"
   ]
 }
