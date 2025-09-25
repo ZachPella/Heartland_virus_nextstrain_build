@@ -1,9 +1,8 @@
-location	latitude	longitude
-USA/Missouri	38.5767	-92.1735
-USA/Georgia	33.7490	-84.3880
-USA/New York	42.1657	-74.9481
-USA/Tennessee	35.7796	-86.7663
-USA/Kentucky	37.8393	-84.2700
-USA/Kansas	38.5266	-96.7265
-CHN	35.8617	104.1954
-USA/Nebraska	41.4925	-99.9018  
+state   USA/Missouri    38.5767 -92.1735
+state   USA/Georgia     33.7490 -84.3880
+state   USA/New-York    42.1657 -74.9481
+state   USA/Tennessee   35.7796 -86.7663
+state   USA/Kentucky    37.8393 -84.2700
+state   USA/Kansas      38.5266 -96.7265
+state   USA/Nebraska    41.4925 -99.9018
+country CHN     35.8617 104.1954
