@@ -1,9 +1,9 @@
-country	USA	#1f77b4
-country	CHN	#ff7f0e
-state	USA/Missouri	#1f77b4
-state	USA/Georgia	#ff7f0e
-state	USA/New York	#2ca02c
-state	USA/Tennessee	#d62728
-state	USA/Kentucky	#9467bd
-state	USA/Kansas	#8c564b
-state   USA/Nebraska	#17becf
+country USA     #1f77b4
+country CHN     #ff7f0e
+state   USA/Missouri    #1f77b4
+state   USA/Georgia     #ff7f0e
+state   USA/New-York    #2ca02c
+state   USA/Tennessee   #d62728
+state   USA/Kentucky    #9467bd
+state   USA/Kansas      #8c564b
+state   USA/Nebraska    #17becf
